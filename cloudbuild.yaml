@@ -1,0 +1,4 @@
+steps:
+- name: 'publysher/hugo'
+  args: ['hugo']
+  dir: 'site'
