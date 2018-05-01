@@ -1,4 +1,12 @@
+secrets:
+- kmsKeyName: projects/iwanariy-sandbox-189101/locations/global/keyRings/test/cryptoKeys/gcb-firebase-cd 
+  secretEnv:
+    MY_SECRET: CiQAuOabLlEQaJs2PJ5e2j8V6FNL+GTmPYxyj7a6Mgamh5J205ASVgB+zkxt/X1xyWn/SKId21KAu6kGy6/0H7mfrOvUIugDHWZpmhP7d7iMqepP8xjtnvdeFk45IKhn7RL0J/2skAnMZsqmS42Zgv2fmrR14ZtCh8yBI1Vc
 steps:
 - name: 'publysher/hugo'
   args: ['hugo']
+  dir: 'site'
+- name: 'devillex/docker-firebase'
+  args: ['firebase', 'deploy', '--token', '$$MY_SECRET']
+  secretEnv: ['MY_SECRET']
   dir: 'site'
